@@ -2,8 +2,6 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
 {
@@ -25,65 +23,37 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
             GoTo();
 
             ScrollToElement(GetDressImageByTitle(firstDressTitle));
-
             HoverElement(GetDressImageByTitle(firstDressTitle));
 
-            WebDriverWait.Until(ExpectedConditions.ElementToBeClickable(addToCompareByNameButton(firstDressTitle)));
-            Thread.Sleep(1000);
+            WebDriverWait.Until(ExpectedConditions.ElementToBeClickable(AddToCompareByNameButton(firstDressTitle)));
+            WaitForAjax();
 
-            if (addToCompareByNameButton(firstDressTitle).Displayed)
-            {
-                addToCompareByNameButton(firstDressTitle).Click();
-            }
-            else
-            {
-                throw new Exception("missing button");
-            }
-
-            ScrollToElement(addToCompareByNameButton(firstDressTitle));
+            AddToCompareByNameButton(firstDressTitle).Click();
+            WaitForAjax();
 
             HoverElement(GetDressImageByTitle(secondDressTitle));
 
-            WebDriverWait.Until(ExpectedConditions.ElementToBeClickable(addToCompareByNameButton(secondDressTitle)));
+            AddToCompareByNameButton(secondDressTitle).Click();
+            WaitForAjax();
 
-            Thread.Sleep(2000);
-
-            try
-            {
-                addToCompareByNameButton(secondDressTitle).Click();
-            }
-            catch
-            {
-                throw new Exception("Compare button 2 not clickable");
-            }
-            
-
-            ScrollToElement(compareButton);
-            WebDriverWait.Until(ExpectedConditions.ElementToBeClickable(compareButton));
-            compareButton.Click();
+            CompareButton.Click();
             WaitForPageToLoad();
         }
 
         public void OpenQuickView(string dressTitle)
         {
             GoTo();
-
-            ScrollToElement(inStockButton);
+            WaitForAjax();
 
             HoverElement(GetDressImageByTitle(dressTitle));
-
-            WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium bt_compare bt_compare']"));
-
-            HoverElement(addToCompareByNameButton(dressTitle));
-
-            WebDriverWait.Until(ExpectedConditions.ElementToBeClickable(addToCompareByNameButton(dressTitle)));
-            Thread.Sleep(2000);
+            WaitForAjax();
 
             QuickViewButton(dressTitle).Click();
 
             WaitForFrameToLoad();
 
             SwitchToFrame(quickVIewFrameId);
+            WaitForAjax();
         }
 
         protected override void WaitForPageToLoad()
@@ -98,7 +68,7 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
 
         public void AddItemToCartWithQuantityColorAndSize(int numberOfCLicks, string size, string color)
         {
-            ScrollToElement(quantityButtonPlus);
+            ScrollToElement(QuantityButtonPlus);
 
             quantityQuickVew = numberOfCLicks + 1;
 
@@ -106,11 +76,12 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
 
             for (int i = 0; i < numberOfCLicks; i++)
             {
-                quantityButtonPlus.Click();
+                QuantityButtonPlus.Click();
             }
 
-            var selectElement = new SelectElement(selectedSize);
+            var selectElement = new SelectElement(SelectedSize);
             selectElement.SelectByText(size);
+            WaitForAjax();
 
             if (ColorOptionByNameButton(color).Displayed)
             {
@@ -121,7 +92,9 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
                 throw new Exception("No Such color exists!");
             }
 
-            addToCartButton.Click();
+            AddToCartButton.Click();
+            Driver.SwitchTo().DefaultContent();
+            WaitForAjax();
         }
     }
 }

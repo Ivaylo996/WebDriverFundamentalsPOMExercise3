@@ -25,8 +25,6 @@ namespace WebDriverFundamentalsPOMExercise3.version2
             var actions = new Actions(Driver);
 
             actions.MoveToElement(iwebElement).Perform();
-
-            //((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].onmouseover()", iwebElement);
         }
 
         public void GoTo()
@@ -59,6 +57,13 @@ namespace WebDriverFundamentalsPOMExercise3.version2
         protected IWebElement WaitAndFindElement(By by)
         {
             return WebDriverWait.Until(ExpectedConditions.ElementExists(by));
+        }
+
+        public void WaitForAjax()
+        {
+            var js = (IJavaScriptExecutor)Driver;
+
+            WebDriverWait.Until(wd => js.ExecuteScript("return jQuery.active").ToString() == "0");
         }
     }
 }
