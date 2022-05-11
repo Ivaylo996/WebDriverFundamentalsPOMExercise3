@@ -25,7 +25,7 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
             ScrollToElement(GetDressImageByTitle(firstDressTitle));
             HoverElement(GetDressImageByTitle(firstDressTitle));
 
-            WebDriverWait.Until(ExpectedConditions.ElementToBeClickable(AddToCompareByNameButton(firstDressTitle)));
+            WaitUntilElementIsClickable(AddToCompareByNameButton(firstDressTitle));
             WaitForAjax();
 
             AddToCompareByNameButton(firstDressTitle).Click();

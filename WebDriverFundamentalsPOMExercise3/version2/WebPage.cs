@@ -49,9 +49,14 @@ namespace WebDriverFundamentalsPOMExercise3.version2
             }
         }
 
-        public void ScrollToElement(IWebElement iWebElement)
+        public void ScrollToElement(IWebElement elementToScrollTo)
         {
-            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", iWebElement);
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", elementToScrollTo);
+        }
+
+        public void WaitUntilElementIsClickable(IWebElement elementToBeClickable)
+        {
+            WebDriverWait.Until(ExpectedConditions.ElementToBeClickable(elementToBeClickable));
         }
 
         protected IWebElement WaitAndFindElement(By by)
