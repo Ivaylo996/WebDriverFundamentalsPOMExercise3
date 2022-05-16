@@ -1,8 +1,9 @@
+using System;
+using AutomationPracticeTests;
 using AutomationPracticeTests.version2.Pages.ProductComparisonPage;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
+using OpenQA.Selenium.Support.Events;
 using WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
@@ -12,14 +13,20 @@ namespace WebDriverFundamentalsPOMExercise3
 {
     public class AutomationPracticeTests : IDisposable
     {
-        private static IWebDriver _driver;
+        private static EventFiringWebDriver _driver;
         private static MainPage _mainPage;
         private static ProductComparisonPage _productComparisonPage;
 
         public AutomationPracticeTests()
         {
             new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
-            _driver = new ChromeDriver();
+            _driver = new EventFiringWebDriver(new ChromeDriver());
+
+            _driver.Navigated += WebDriverEventHandler.FiringDriver_Navigated;
+            _driver.Navigating += WebDriverEventHandler.FiringDriver_Navigating;
+            _driver.ElementClicking += WebDriverEventHandler.FiringDriver_Clicking;
+            _driver.ElementClicked += WebDriverEventHandler.FiringDriver_Clicked;
+
             _mainPage = new MainPage(_driver);
             _productComparisonPage = new ProductComparisonPage(_driver);
         }
@@ -30,13 +37,19 @@ namespace WebDriverFundamentalsPOMExercise3
             _driver.Manage().Window.Maximize();
         }
 
+        [TearDown]
+        public void TestCleanup()
+        {
+            WebDriverEventHandler.PerformanceTimingService.GenerateReport();
+        }
+
         [Test]
         [TestCase("Printed Dress", "Printed Dress", "Printed Summer Dress", "Printed Summer Dress")]
         public void InformationDisplayedOnComparisonScreen_When_ItemsAreAddedToCompare(string firstDressTitle, string firstDressActualText, string secondDressTitle, string secondDressActualText)
         {
             _mainPage.AddItemsToCompare(firstDressTitle, secondDressTitle);
 
-            _productComparisonPage.AssertionAddTwoItemsToCompare(firstDressTitle, firstDressActualText, secondDressTitle, secondDressActualText);
+            _productComparisonPage.AssertAddTwoItemsToCompare(firstDressTitle, firstDressActualText, secondDressTitle, secondDressActualText);
         }
 
         [Test]
@@ -45,7 +58,7 @@ namespace WebDriverFundamentalsPOMExercise3
         {
             _mainPage.OpenQuickView(actualDressTitle);
 
-            _mainPage.AssertionQuickviewScreen(expectedResultDressTitle, actualDressTitle);
+            _mainPage.AssertQuickviewScreen(expectedResultDressTitle, actualDressTitle);
         }
 
         [Test]
@@ -55,7 +68,8 @@ namespace WebDriverFundamentalsPOMExercise3
             _mainPage.OpenQuickView(actualDressTitle);
             _mainPage.AddItemToCartWithQuantityColorAndSize(numberOfClicksQuantity, size, color);
 
-            _mainPage.AssetionItemOpenedFromQuickView();
+            _mainPage.AssertItemOpenedFromQuickViewQuantity();
+            _mainPage.AssertItemOpenedFromQuickViewColorAndSize();
         }
 
         public void Dispose()

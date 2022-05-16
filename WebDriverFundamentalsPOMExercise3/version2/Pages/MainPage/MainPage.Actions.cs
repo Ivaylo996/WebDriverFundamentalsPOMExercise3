@@ -1,7 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
-using System;
 
 namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
 {
@@ -46,12 +45,12 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
             WaitForAjax();
 
             HoverElement(GetDressImageByTitle(dressTitle));
+            HoverElement(QuickViewButton(dressTitle));
             WaitForAjax();
 
             QuickViewButton(dressTitle).Click();
 
             WaitForFrameToLoad();
-
             SwitchToFrame(quickVIewFrameId);
             WaitForAjax();
         }
