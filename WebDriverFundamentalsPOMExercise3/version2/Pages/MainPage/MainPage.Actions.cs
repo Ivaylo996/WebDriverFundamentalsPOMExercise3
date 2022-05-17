@@ -17,34 +17,34 @@ namespace AutomationPractice.version2.Pages.MainPage
         protected string dressColorAndSize;
         protected int quantityQuickVew;
 
-        public void AddItemsToCompare(string firstDressTitle, string secondDressTitle)
+        public void AddItemsToCompareByDressTitles(string firstDressTitle, string secondDressTitle)
         {
             GoTo();
 
-            ScrollToElement(GetDressImageByTitle(firstDressTitle));
-            HoverElement(GetDressImageByTitle(firstDressTitle));
+            ScrollToElement(GetDressImageByDressTitle(firstDressTitle));
+            HoverElement(GetDressImageByDressTitle(firstDressTitle));
 
-            WaitUntilElementIsClickable(GetAddToCompareButtonByTitle(firstDressTitle));
+            WaitUntilElementIsClickable(GetAddToCompareButtonByDressTitle(firstDressTitle));
             WaitForAjax();
 
-            GetAddToCompareButtonByTitle(firstDressTitle).Click();
+            GetAddToCompareButtonByDressTitle(firstDressTitle).Click();
             WaitForAjax();
 
-            HoverElement(GetDressImageByTitle(secondDressTitle));
+            HoverElement(GetDressImageByDressTitle(secondDressTitle));
 
-            GetAddToCompareButtonByTitle(secondDressTitle).Click();
+            GetAddToCompareButtonByDressTitle(secondDressTitle).Click();
             WaitForAjax();
 
             CompareButton.Click();
             WaitForPageToLoad();
         }
 
-        public void OpenQuickView(string dressTitle)
+        public void OpenQuickViewByDressTitle(string dressTitle)
         {
             GoTo();
             WaitForAjax();
 
-            HoverElement(GetDressImageByTitle(dressTitle));
+            HoverElement(GetDressImageByDressTitle(dressTitle));
             HoverElement(GetQuickViewButtonByDressTitle(dressTitle));
             WaitForAjax();
 
@@ -65,7 +65,7 @@ namespace AutomationPractice.version2.Pages.MainPage
             WaitAndFindElement(By.XPath("//iframe[contains(@id, 'fancybox-frame')]"));
         }
 
-        public void AddItemToCartWithQuantityColorAndSize(int numberOfCLicks, string size, string color)
+        public void AddItemToCartWithDressQuantityDressColorAndDressSize(int numberOfCLicks, string size, string color)
         {
             ScrollToElement(QuantityButtonPlus);
 

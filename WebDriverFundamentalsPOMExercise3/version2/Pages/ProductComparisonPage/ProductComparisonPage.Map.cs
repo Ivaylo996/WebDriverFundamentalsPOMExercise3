@@ -4,7 +4,7 @@ namespace AutomationPractice.version2.Pages.ProductComparisonPage
 {
     public partial class ProductComparisonPage
     {
-        public IWebElement GetActualLabelCompareByTitle(string dressTitle)
+        public IWebElement GetActualCompareLabelByTitle(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//a[@class='product-name' and @title='{dressTitle}']"));
         }

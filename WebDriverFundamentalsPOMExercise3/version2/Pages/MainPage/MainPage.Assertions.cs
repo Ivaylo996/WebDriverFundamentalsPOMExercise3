@@ -6,7 +6,7 @@ namespace AutomationPractice.version2.Pages.MainPage
     {
         public void AssertQuickviewScreen(string expectedResultDressTitle, string actualDressTitle)
         {
-            Assert.AreEqual(expectedResultDressTitle, GetActualLabelFromQuckViewByTitle(actualDressTitle).Text.Trim());
+            Assert.AreEqual(expectedResultDressTitle, GetActualLabelFromQuckViewByDressTitle(actualDressTitle).Text.Trim());
         }
 
         public void AssertItemOpenedFromQuickViewQuantity()

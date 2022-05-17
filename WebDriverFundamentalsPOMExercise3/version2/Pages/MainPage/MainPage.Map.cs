@@ -25,17 +25,17 @@ namespace AutomationPractice.version2.Pages.MainPage
             return WaitAndFindElement(By.XPath($"//a[@class='product_img_link' and @title='{dressTitle}']//following-sibling::a[@class='quick-view']"));
         }
 
-        public IWebElement GetAddToCompareButtonByTitle(string dressTitle)
+        public IWebElement GetAddToCompareButtonByDressTitle(string dressTitle)
         {
             return WaitAndFindElement(RelativeBy.WithLocator(By.XPath("//a[@class='add_to_compare']")).Below(By.XPath($"//img[@title='{dressTitle}']")));
         }
 
-        public IWebElement GetDressImageByTitle(string dressTitle)
+        public IWebElement GetDressImageByDressTitle(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//img[@title='{dressTitle}']"));
         }
   
-        public IWebElement GetActualLabelFromQuckViewByTitle(string dressTitle)
+        public IWebElement GetActualLabelFromQuckViewByDressTitle(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//h1[contains(text(),'{dressTitle}')]"));
         }
