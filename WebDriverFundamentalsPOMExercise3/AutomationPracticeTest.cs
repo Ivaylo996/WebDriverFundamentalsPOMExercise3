@@ -1,5 +1,4 @@
 using System;
-using AutomationPractice;
 using AutomationPractice.version2.Pages.ProductComparisonPage;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
@@ -48,7 +47,7 @@ namespace AutomationPractice
         [TestCase("Printed Dress", "Printed Dress", "Printed Summer Dress", "Printed Summer Dress")]
         public void InformationDisplayedOnComparisonScreen_When_ItemsAreAddedToCompare(string firstDressTitle, string firstDressActualText, string secondDressTitle, string secondDressActualText)
         {
-            _mainPage.AddItemsToCompare(firstDressTitle, secondDressTitle);
+            _mainPage.AddItemsToCompareByDressTitles(firstDressTitle, secondDressTitle);
 
             _productComparisonPage.AssertAddTwoItemsToCompare(firstDressTitle, firstDressActualText, secondDressTitle, secondDressActualText);
         }
@@ -57,7 +56,7 @@ namespace AutomationPractice
         [TestCase("Printed Summer Dress", "Printed Summer Dress")]
         public void InformationDisplayedQuickView_When_ClickOnQuickView(string expectedResultDressTitle, string actualDressTitle)
         {
-            _mainPage.OpenQuickView(actualDressTitle);
+            _mainPage.OpenQuickViewByDressTitle(actualDressTitle);
 
             _mainPage.AssertQuickviewScreen(expectedResultDressTitle, actualDressTitle);
         }
@@ -66,8 +65,8 @@ namespace AutomationPractice
         [TestCase("Printed Summer Dress", "Printed Summer Dress", 2, "M", "Yellow")]
         public void ItemAddedToCartFromQuickView_When_InitializesCorrectQuantitySizeColor(string expectedResultDressTitle, string actualDressTitle, int numberOfClicksQuantity, string size, string color)
         {
-            _mainPage.OpenQuickView(actualDressTitle);
-            _mainPage.AddItemToCartWithQuantityColorAndSize(numberOfClicksQuantity, size, color);
+            _mainPage.OpenQuickViewByDressTitle(actualDressTitle);
+            _mainPage.AddItemToCartWithDressQuantityDressColorAndDressSize(numberOfClicksQuantity, size, color);
 
             _mainPage.AssertItemOpenedFromQuickViewQuantity();
             _mainPage.AssertItemOpenedFromQuickViewColorAndSize();

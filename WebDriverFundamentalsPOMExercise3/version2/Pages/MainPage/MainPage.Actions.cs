@@ -17,7 +17,7 @@ namespace AutomationPractice.version2.Pages.MainPage
         protected string dressColorAndSize;
         protected int quantityQuickVew;
 
-        public void AddItemsToCompare(string firstDressTitle, string secondDressTitle)
+        public void AddItemsToCompareByDressTitles(string firstDressTitle, string secondDressTitle)
         {
             GoTo();
 
@@ -39,7 +39,7 @@ namespace AutomationPractice.version2.Pages.MainPage
             WaitForPageToLoad();
         }
 
-        public void OpenQuickView(string dressTitle)
+        public void OpenQuickViewByDressTitle(string dressTitle)
         {
             GoTo();
             WaitForAjax();
@@ -65,7 +65,7 @@ namespace AutomationPractice.version2.Pages.MainPage
             WaitAndFindElement(By.XPath("//iframe[contains(@id, 'fancybox-frame')]"));
         }
 
-        public void AddItemToCartWithQuantityColorAndSize(int numberOfCLicks, string size, string color)
+        public void AddItemToCartWithDressQuantityDressColorAndDressSize(int numberOfCLicks, string size, string color)
         {
             ScrollToElement(QuantityButtonPlus);
 
