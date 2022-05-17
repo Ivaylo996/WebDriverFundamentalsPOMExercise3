@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AutomationPracticeTests.version2.Modules
+namespace AutomationPractice.version2.Modules
 {
     public class PagePerformanceTiming
     {

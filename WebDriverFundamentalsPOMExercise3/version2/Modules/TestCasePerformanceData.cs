@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AutomationPracticeTests.version2.Modules
+namespace AutomationPractice.version2.Modules
 {
     public class TestCasePerformanceData
     {

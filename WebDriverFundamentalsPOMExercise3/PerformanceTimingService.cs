@@ -2,11 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using AutomationPracticeTests.version2.Modules;
+using AutomationPractice.version2.Modules;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 
-namespace AutomationPracticeTests
+namespace AutomationPractice
 {
     internal class PerformanceTimingService
     {

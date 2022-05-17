@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
+namespace AutomationPractice.version2.Pages.MainPage
 {
     public partial class MainPage
     {
@@ -15,17 +15,17 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
         public IWebElement ActualColorAndSizeLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_attributes']"));
         public IWebElement AddedItemToCartLabel => WaitAndFindElement(By.XPath("//i[@class='icon-ok']"));
 
-        public IWebElement ActualAddToCartLabel(string dressTitle)
+        public IWebElement GetActualAddToCartLabelByText(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//span[contains(text(),'{dressTitle}')]"));
         }
 
-        public IWebElement QuickViewButton(string dressTitle)
+        public IWebElement GetQuickViewButtonByDressTitle(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//a[@class='product_img_link' and @title='{dressTitle}']//following-sibling::a[@class='quick-view']"));
         }
 
-        public IWebElement AddToCompareByNameButton(string dressTitle)
+        public IWebElement GetAddToCompareButtonByTitle(string dressTitle)
         {
             return WaitAndFindElement(RelativeBy.WithLocator(By.XPath("//a[@class='add_to_compare']")).Below(By.XPath($"//img[@title='{dressTitle}']")));
         }
@@ -35,12 +35,12 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
             return WaitAndFindElement(By.XPath($"//img[@title='{dressTitle}']"));
         }
   
-        public IWebElement ActualLabelQuckView(string dressTitle)
+        public IWebElement GetActualLabelFromQuckViewByTitle(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//h1[contains(text(),'{dressTitle}')]"));
         }
 
-        public IWebElement ColorOptionByNameButton(string colorName)
+        public IWebElement GetColorOptionButtonByColorName(string colorName)
         {
             return WaitAndFindElement(By.XPath($"//a[@name='{colorName}']"));
         }

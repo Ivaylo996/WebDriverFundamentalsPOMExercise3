@@ -1,15 +1,15 @@
 using System;
-using AutomationPracticeTests;
-using AutomationPracticeTests.version2.Pages.ProductComparisonPage;
+using AutomationPractice;
+using AutomationPractice.version2.Pages.ProductComparisonPage;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Events;
-using WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage;
+using AutomationPractice.version2.Pages.MainPage;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 
-namespace WebDriverFundamentalsPOMExercise3
+namespace AutomationPractice
 {
     public class AutomationPracticeTests : IDisposable
     {
@@ -26,6 +26,7 @@ namespace WebDriverFundamentalsPOMExercise3
             _driver.Navigating += WebDriverEventHandler.FiringDriver_Navigating;
             _driver.ElementClicking += WebDriverEventHandler.FiringDriver_Clicking;
             _driver.ElementClicked += WebDriverEventHandler.FiringDriver_Clicked;
+            _driver.FindingElement += WebDriverEventHandler.FiringDriver_FindingElement;
 
             _mainPage = new MainPage(_driver);
             _productComparisonPage = new ProductComparisonPage(_driver);
@@ -62,7 +63,7 @@ namespace WebDriverFundamentalsPOMExercise3
         }
 
         [Test]
-        [TestCase("Printed Chiffon Dress", "Printed Chiffon Dress", 2, "M", "Yellow")]
+        [TestCase("Printed Summer Dress", "Printed Summer Dress", 2, "M", "Yellow")]
         public void ItemAddedToCartFromQuickView_When_InitializesCorrectQuantitySizeColor(string expectedResultDressTitle, string actualDressTitle, int numberOfClicksQuantity, string size, string color)
         {
             _mainPage.OpenQuickView(actualDressTitle);
