@@ -1,8 +1,9 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Events;
+using OpenQA.Selenium.Support.UI;
 
-namespace AutomationPracticeTests
+namespace AutomationPractice
 {
     internal class WebDriverEventHandler
     {
@@ -21,6 +22,14 @@ namespace AutomationPracticeTests
                     performanceTimingService = value;
                 }
             }
+        }
+
+        public static void FiringDriver_FindingElement(object sender, FindElementEventArgs e)
+        {
+            Console.WriteLine("Finding element");
+            var js = ((IJavaScriptExecutor)e.Driver);
+            var WebDriverWait = new WebDriverWait(e.Driver, TimeSpan.FromSeconds(60));
+            WebDriverWait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
         }
 
         public static void FiringDriver_Navigating(object sender, WebDriverNavigationEventArgs e)

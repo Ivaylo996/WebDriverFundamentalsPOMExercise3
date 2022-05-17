@@ -4,7 +4,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
-namespace WebDriverFundamentalsPOMExercise3.version2
+namespace AutomationPractice.version2
 {
     public abstract class WebPage
     {
@@ -18,7 +18,7 @@ namespace WebDriverFundamentalsPOMExercise3.version2
 
         protected IWebDriver Driver { get; set; }
         protected WebDriverWait WebDriverWait { get; set; }
-        protected abstract string Url { get; }
+        protected virtual string Url { get; }
 
         protected void HoverElement(IWebElement iwebElement)
         {
@@ -69,6 +69,13 @@ namespace WebDriverFundamentalsPOMExercise3.version2
             var js = (IJavaScriptExecutor)Driver;
 
             WebDriverWait.Until(wd => js.ExecuteScript("return jQuery.active").ToString() == "0");
+        }
+
+        public void WaitUntilPageLoadsCompletely()
+        {
+            var js = ((IJavaScriptExecutor)Driver);
+
+            WebDriverWait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
         }
     }
 }

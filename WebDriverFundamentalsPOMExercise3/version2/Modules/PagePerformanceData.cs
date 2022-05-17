@@ -1,5 +1,5 @@
 ﻿
-namespace AutomationPracticeTests.version2.Modules
+namespace AutomationPractice.version2.Modules
 {
     public class PagePerformanceData
     {

@@ -1,12 +1,12 @@
 ﻿using NUnit.Framework;
 
-namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
+namespace AutomationPractice.version2.Pages.MainPage
 {
     public partial class MainPage
     {
         public void AssertQuickviewScreen(string expectedResultDressTitle, string actualDressTitle)
         {
-            Assert.AreEqual(expectedResultDressTitle, ActualLabelQuckView(actualDressTitle).Text.Trim());
+            Assert.AreEqual(expectedResultDressTitle, GetActualLabelFromQuckViewByTitle(actualDressTitle).Text.Trim());
         }
 
         public void AssertItemOpenedFromQuickViewQuantity()

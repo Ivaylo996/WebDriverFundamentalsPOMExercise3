@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
+namespace AutomationPractice.version2.Pages.MainPage
 {
     public partial class MainPage : WebPage
     {
@@ -24,15 +24,15 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
             ScrollToElement(GetDressImageByTitle(firstDressTitle));
             HoverElement(GetDressImageByTitle(firstDressTitle));
 
-            WaitUntilElementIsClickable(AddToCompareByNameButton(firstDressTitle));
+            WaitUntilElementIsClickable(GetAddToCompareButtonByTitle(firstDressTitle));
             WaitForAjax();
 
-            AddToCompareByNameButton(firstDressTitle).Click();
+            GetAddToCompareButtonByTitle(firstDressTitle).Click();
             WaitForAjax();
 
             HoverElement(GetDressImageByTitle(secondDressTitle));
 
-            AddToCompareByNameButton(secondDressTitle).Click();
+            GetAddToCompareButtonByTitle(secondDressTitle).Click();
             WaitForAjax();
 
             CompareButton.Click();
@@ -45,10 +45,10 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
             WaitForAjax();
 
             HoverElement(GetDressImageByTitle(dressTitle));
-            HoverElement(QuickViewButton(dressTitle));
+            HoverElement(GetQuickViewButtonByDressTitle(dressTitle));
             WaitForAjax();
 
-            QuickViewButton(dressTitle).Click();
+            GetQuickViewButtonByDressTitle(dressTitle).Click();
 
             WaitForFrameToLoad();
             SwitchToFrame(quickVIewFrameId);
@@ -82,9 +82,9 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
             selectElement.SelectByText(size);
             WaitForAjax();
 
-            if (ColorOptionByNameButton(color).Displayed)
+            if (GetColorOptionButtonByColorName(color).Displayed)
             {
-                ColorOptionByNameButton(color).Click();
+                GetColorOptionButtonByColorName(color).Click();
             }
             else
             {
@@ -93,7 +93,7 @@ namespace WebDriverFundamentalsPOMExercise3.version2.Pages.MainPage
 
             AddToCartButton.Click();
             Driver.SwitchTo().DefaultContent();
-            WaitForAjax();
+            WaitUntilPageLoadsCompletely();
         }
     }
 }
