@@ -21,18 +21,18 @@ namespace AutomationPractice.version2.Pages.MainPage
         {
             GoTo();
 
-            ScrollToElement(GetDressImageByTitle(firstDressTitle));
-            HoverElement(GetDressImageByTitle(firstDressTitle));
+            ScrollToElement(GetDressImageByDressTitle(firstDressTitle));
+            HoverElement(GetDressImageByDressTitle(firstDressTitle));
 
-            WaitUntilElementIsClickable(GetAddToCompareButtonByTitle(firstDressTitle));
+            WaitUntilElementIsClickable(GetAddToCompareButtonByDressTitle(firstDressTitle));
             WaitForAjax();
 
-            GetAddToCompareButtonByTitle(firstDressTitle).Click();
+            GetAddToCompareButtonByDressTitle(firstDressTitle).Click();
             WaitForAjax();
 
-            HoverElement(GetDressImageByTitle(secondDressTitle));
+            HoverElement(GetDressImageByDressTitle(secondDressTitle));
 
-            GetAddToCompareButtonByTitle(secondDressTitle).Click();
+            GetAddToCompareButtonByDressTitle(secondDressTitle).Click();
             WaitForAjax();
 
             CompareButton.Click();
@@ -44,7 +44,7 @@ namespace AutomationPractice.version2.Pages.MainPage
             GoTo();
             WaitForAjax();
 
-            HoverElement(GetDressImageByTitle(dressTitle));
+            HoverElement(GetDressImageByDressTitle(dressTitle));
             HoverElement(GetQuickViewButtonByDressTitle(dressTitle));
             WaitForAjax();
 
