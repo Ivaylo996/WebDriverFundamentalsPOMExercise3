@@ -32,7 +32,7 @@ namespace AutomationPractice
         }
 
         [SetUp]
-        public void Setup()
+        public void TestInit()
         {
             _driver.Manage().Window.Maximize();
         }
@@ -68,8 +68,8 @@ namespace AutomationPractice
             _mainPage.OpenQuickViewByDressTitle(actualDressTitle);
             _mainPage.AddItemToCartWithDressQuantityDressColorAndDressSize(numberOfClicksQuantity, size, color);
 
-            _mainPage.AssertItemOpenedFromQuickViewQuantity();
-            _mainPage.AssertItemOpenedFromQuickViewColorAndSize();
+            _mainPage.AssertQuantityOfProductFromQuickView();
+            _mainPage.AssertColorAndSizeOfProductFromQuickView();
         }
 
         public void Dispose()

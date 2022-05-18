@@ -9,6 +9,7 @@ namespace AutomationPractice.version2
     public abstract class WebPage
     {
         private const int WAIT_FOR_ELEMENT_TIMEOUT = 60;
+        private string url = "http://automationpractice.com/";
 
         public WebPage(IWebDriver _driver)
         {
@@ -18,7 +19,17 @@ namespace AutomationPractice.version2
 
         protected IWebDriver Driver { get; set; }
         protected WebDriverWait WebDriverWait { get; set; }
-        protected virtual string Url { get; }
+        protected virtual string Url
+        {
+            get
+            {
+                return url;
+            }
+            set
+            {
+                url = value;
+            }
+        }
 
         protected void HoverElement(IWebElement iwebElement)
         {

@@ -4,16 +4,16 @@ namespace AutomationPractice.version2.Pages.MainPage
 {
     public partial class MainPage
     {
-        public IWebElement CompareButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium bt_compare bt_compare']"));
-        public IWebElement QuickViewFrame => WaitAndFindElement(By.XPath("//iframe[contains(@id, 'fancybox-frame')]"));
-        public IWebElement InStockButton => WaitAndFindElement(By.XPath("//link[@itemprop='availability']"));
-        public IWebElement QuantityButtonPlus => WaitAndFindElement(By.XPath("//a[@class='btn btn-default button-plus product_quantity_up']"));
-        public IWebElement SelectedSize => WaitAndFindElement(By.XPath("//select[@id='group_1']"));
-        public IWebElement AddToCartButton => WaitAndFindElement(By.XPath("//p[@id='add_to_cart']/button"));
-        public IWebElement ProceedToCheckoutButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium']"));
-        public IWebElement ActualQuantityLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_quantity']"));
-        public IWebElement ActualColorAndSizeLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_attributes']"));
-        public IWebElement AddedItemToCartLabel => WaitAndFindElement(By.XPath("//i[@class='icon-ok']"));
+        public IWebElement MainPageCompareButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium bt_compare bt_compare']"));
+        public IWebElement MainPageQuickViewFrame => WaitAndFindElement(By.XPath("//iframe[contains(@id, 'fancybox-frame')]"));
+        public IWebElement MainPageInStockButton => WaitAndFindElement(By.XPath("//link[@itemprop='availability']"));
+        public IWebElement MainPageQuantityButtonPlus => WaitAndFindElement(By.XPath("//a[@class='btn btn-default button-plus product_quantity_up']"));
+        public IWebElement MainPageSelectedProductSize => WaitAndFindElement(By.XPath("//select[@id='group_1']"));
+        public IWebElement MainPageAddToCartButton => WaitAndFindElement(By.XPath("//p[@id='add_to_cart']/button"));
+        public IWebElement MainPageProceedToCheckoutButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium']"));
+        public IWebElement MainPageActualQuantityLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_quantity']"));
+        public IWebElement MainPageActualColorAndSizeLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_attributes']"));
+        public IWebElement MainPageAddedItemToCartLabel => WaitAndFindElement(By.XPath("//i[@class='icon-ok']"));
 
         public IWebElement GetActualAddToCartLabelByText(string dressTitle)
         {
