@@ -6,16 +6,22 @@ namespace AutomationPractice.version2.Pages.MainPage
 {
     public partial class MainPage : WebPage
     {
+        private string currentSubUrl = "index.php?id_category=8&controller=category";
+
         public MainPage(IWebDriver _driver) : base(_driver)
         {
         }
 
-        protected override string Url => "http://automationpractice.com/index.php?id_category=8&controller=category";
-
         protected string quickVIewFrameId = "//iframe[contains(@id,'fancybox-frame')]";
-        protected string successfullyAddedFrameId = "";
         protected string dressColorAndSize;
         protected int quantityQuickVew;
+        protected override string Url
+        {
+            get
+            {
+                return base.Url + currentSubUrl;
+            }
+        }
 
         public void AddItemsToCompareByDressTitles(string firstDressTitle, string secondDressTitle)
         {
@@ -35,7 +41,7 @@ namespace AutomationPractice.version2.Pages.MainPage
             GetAddToCompareButtonByDressTitle(secondDressTitle).Click();
             WaitForAjax();
 
-            CompareButton.Click();
+            MainPageCompareButton.Click();
             WaitForPageToLoad();
         }
 
@@ -67,7 +73,7 @@ namespace AutomationPractice.version2.Pages.MainPage
 
         public void AddItemToCartWithDressQuantityDressColorAndDressSize(int numberOfCLicks, string size, string color)
         {
-            ScrollToElement(QuantityButtonPlus);
+            ScrollToElement(MainPageQuantityButtonPlus);
 
             quantityQuickVew = numberOfCLicks + 1;
 
@@ -75,10 +81,10 @@ namespace AutomationPractice.version2.Pages.MainPage
 
             for (int i = 0; i < numberOfCLicks; i++)
             {
-                QuantityButtonPlus.Click();
+                MainPageQuantityButtonPlus.Click();
             }
 
-            var selectElement = new SelectElement(SelectedSize);
+            var selectElement = new SelectElement(MainPageSelectedProductSize);
             selectElement.SelectByText(size);
             WaitForAjax();
 
@@ -91,7 +97,7 @@ namespace AutomationPractice.version2.Pages.MainPage
                 throw new Exception("No Such color exists!");
             }
 
-            AddToCartButton.Click();
+            MainPageAddToCartButton.Click();
             Driver.SwitchTo().DefaultContent();
             WaitUntilPageLoadsCompletely();
         }

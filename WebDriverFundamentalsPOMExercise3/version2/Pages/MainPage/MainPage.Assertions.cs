@@ -9,14 +9,14 @@ namespace AutomationPractice.version2.Pages.MainPage
             Assert.AreEqual(expectedResultDressTitle, GetActualLabelFromQuckViewByDressTitle(actualDressTitle).Text.Trim());
         }
 
-        public void AssertItemOpenedFromQuickViewQuantity()
+        public void AssertQuantityOfProductFromQuickView()
         {
-            Assert.AreEqual(quantityQuickVew.ToString(), ActualQuantityLabel.Text);
+            Assert.AreEqual(quantityQuickVew.ToString(), MainPageActualQuantityLabel.Text);
         }
 
-        public void AssertItemOpenedFromQuickViewColorAndSize()
+        public void AssertColorAndSizeOfProductFromQuickView()
         {
-            Assert.AreEqual(dressColorAndSize, ActualColorAndSizeLabel.Text);
+            Assert.AreEqual(dressColorAndSize, MainPageActualColorAndSizeLabel.Text);
         }
     }
 }
