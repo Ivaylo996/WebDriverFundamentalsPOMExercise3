@@ -1,16 +1,15 @@
-using System;
+using AutomationPractice.version2.Pages.MainPage;
 using AutomationPractice.version2.Pages.ProductComparisonPage;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Events;
-using AutomationPractice.version2.Pages.MainPage;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 
 namespace AutomationPractice
 {
-    public class AutomationPracticeTests : IDisposable
+    public class AutomationPracticeTests
     {
         private static EventFiringWebDriver _driver;
         private static MainPage _mainPage;
@@ -41,40 +40,33 @@ namespace AutomationPractice
         public void TestCleanup()
         {
             WebDriverEventHandler.PerformanceTimingService.GenerateReport();
+            _driver.Close();
         }
 
         [Test]
-        [TestCase("Printed Dress", "Printed Dress", "Printed Summer Dress", "Printed Summer Dress")]
-        public void InformationDisplayedOnComparisonScreen_When_ItemsAreAddedToCompare(string firstDressTitle, string firstDressActualText, string secondDressTitle, string secondDressActualText)
+        public void InformationDisplayedOnComparisonScreen_When_ItemsAreAddedToCompare()
         {
-            _mainPage.AddItemsToCompareByDressTitles(firstDressTitle, secondDressTitle);
+            _mainPage.AddItemsToCompareByDressTitles("Printed Dress", "Printed Summer Dress");
 
-            _productComparisonPage.AssertAddTwoItemsToCompare(firstDressTitle, firstDressActualText, secondDressTitle, secondDressActualText);
+            _productComparisonPage.AssertAddTwoItemsToCompare("Printed Dress", "Printed Dress", "Printed Summer Dress", "Printed Summer Dress");
         }
 
         [Test]
-        [TestCase("Printed Summer Dress", "Printed Summer Dress")]
-        public void InformationDisplayedQuickView_When_ClickOnQuickView(string expectedResultDressTitle, string actualDressTitle)
+        public void InformationDisplayedQuickView_When_ClickOnQuickView()
         {
-            _mainPage.OpenQuickViewByDressTitle(actualDressTitle);
+            _mainPage.OpenQuickViewByDressTitle("Printed Summer Dress");
 
-            _mainPage.AssertQuickviewScreen(expectedResultDressTitle, actualDressTitle);
+            _mainPage.AssertQuickviewScreen("Printed Summer Dress", "Printed Summer Dress");
         }
 
         [Test]
-        [TestCase("Printed Summer Dress", "Printed Summer Dress", 2, "M", "Yellow")]
-        public void ItemAddedToCartFromQuickView_When_InitializesCorrectQuantitySizeColor(string expectedResultDressTitle, string actualDressTitle, int numberOfClicksQuantity, string size, string color)
+        public void ItemAddedToCartFromQuickView_When_InitializesCorrectQuantitySizeColor()
         {
-            _mainPage.OpenQuickViewByDressTitle(actualDressTitle);
-            _mainPage.AddItemToCartWithDressQuantityDressColorAndDressSize(numberOfClicksQuantity, size, color);
+            _mainPage.OpenQuickViewByDressTitle("Printed Summer Dress");
+            _mainPage.AddItemToCartWithDressQuantityDressColorAndDressSize(2, "M", "Yellow");
 
             _mainPage.AssertQuantityOfProductFromQuickView();
             _mainPage.AssertColorAndSizeOfProductFromQuickView();
-        }
-
-        public void Dispose()
-        {
-            _driver.Quit();
         }
     }
 }

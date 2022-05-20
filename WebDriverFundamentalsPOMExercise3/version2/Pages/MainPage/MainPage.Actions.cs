@@ -1,27 +1,19 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace AutomationPractice.version2.Pages.MainPage
 {
     public partial class MainPage : WebPage
     {
-        private string currentSubUrl = "index.php?id_category=8&controller=category";
-
-        public MainPage(IWebDriver _driver) : base(_driver)
+        public MainPage(IWebDriver _driver) 
+            : base(_driver)
         {
         }
 
         protected string quickVIewFrameId = "//iframe[contains(@id,'fancybox-frame')]";
         protected string dressColorAndSize;
         protected int quantityQuickVew;
-        protected override string Url
-        {
-            get
-            {
-                return base.Url + currentSubUrl;
-            }
-        }
+        protected override string Url => base.Url + "index.php?id_category=8&controller=category";
 
         public void AddItemsToCompareByDressTitles(string firstDressTitle, string secondDressTitle)
         {
@@ -29,19 +21,16 @@ namespace AutomationPractice.version2.Pages.MainPage
 
             ScrollToElement(GetDressImageByDressTitle(firstDressTitle));
             HoverElement(GetDressImageByDressTitle(firstDressTitle));
-
             WaitUntilElementIsClickable(GetAddToCompareButtonByDressTitle(firstDressTitle));
             WaitForAjax();
-
             GetAddToCompareButtonByDressTitle(firstDressTitle).Click();
             WaitForAjax();
 
             HoverElement(GetDressImageByDressTitle(secondDressTitle));
-
             GetAddToCompareButtonByDressTitle(secondDressTitle).Click();
             WaitForAjax();
 
-            MainPageCompareButton.Click();
+            CompareButton.Click();
             WaitForPageToLoad();
         }
 
@@ -55,7 +44,6 @@ namespace AutomationPractice.version2.Pages.MainPage
             WaitForAjax();
 
             GetQuickViewButtonByDressTitle(dressTitle).Click();
-
             WaitForFrameToLoad();
             SwitchToFrame(quickVIewFrameId);
             WaitForAjax();
@@ -73,18 +61,16 @@ namespace AutomationPractice.version2.Pages.MainPage
 
         public void AddItemToCartWithDressQuantityDressColorAndDressSize(int numberOfCLicks, string size, string color)
         {
-            ScrollToElement(MainPageQuantityButtonPlus);
-
+            ScrollToElement(QuantityIncreaseButton);
             quantityQuickVew = numberOfCLicks + 1;
-
             dressColorAndSize = $"{color}, {size}";
 
             for (int i = 0; i < numberOfCLicks; i++)
             {
-                MainPageQuantityButtonPlus.Click();
+                QuantityIncreaseButton.Click();
             }
 
-            var selectElement = new SelectElement(MainPageSelectedProductSize);
+            var selectElement = new SelectElement(SelectedProductSize);
             selectElement.SelectByText(size);
             WaitForAjax();
 
@@ -92,12 +78,8 @@ namespace AutomationPractice.version2.Pages.MainPage
             {
                 GetColorOptionButtonByColorName(color).Click();
             }
-            else
-            {
-                throw new Exception("No Such color exists!");
-            }
 
-            MainPageAddToCartButton.Click();
+            AddToCartButton.Click();
             Driver.SwitchTo().DefaultContent();
             WaitUntilPageLoadsCompletely();
         }

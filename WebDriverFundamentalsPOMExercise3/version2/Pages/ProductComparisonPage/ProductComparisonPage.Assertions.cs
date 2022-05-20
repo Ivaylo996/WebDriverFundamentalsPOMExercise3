@@ -4,10 +4,10 @@ namespace AutomationPractice.version2.Pages.ProductComparisonPage
 {
     public partial class ProductComparisonPage
     {
-        public void AssertAddTwoItemsToCompare(string firstDressTitle, string firstDressText, string secondDressTitle, string secondDressText)
+        public void AssertAddTwoItemsToCompare(string firstDressTitle, string firstExpectedDressText, string secondDressTitle, string secondExpectedDressText)
         {
-            Assert.AreEqual(firstDressText, GetActualCompareLabelByDressTitle(firstDressTitle).Text.Trim());
-            Assert.AreEqual(secondDressText, GetActualCompareLabelByDressTitle(secondDressTitle).Text.Trim());
+            Assert.AreEqual(firstExpectedDressText, GetActualCompareLabelByDressTitle(firstDressTitle).Text.Trim());
+            Assert.AreEqual(secondExpectedDressText, GetActualCompareLabelByDressTitle(secondDressTitle).Text.Trim());
         }
     }
 }

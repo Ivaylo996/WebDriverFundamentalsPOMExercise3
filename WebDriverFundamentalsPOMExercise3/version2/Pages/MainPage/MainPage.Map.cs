@@ -4,18 +4,18 @@ namespace AutomationPractice.version2.Pages.MainPage
 {
     public partial class MainPage
     {
-        public IWebElement MainPageCompareButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium bt_compare bt_compare']"));
-        public IWebElement MainPageQuickViewFrame => WaitAndFindElement(By.XPath("//iframe[contains(@id, 'fancybox-frame')]"));
-        public IWebElement MainPageInStockButton => WaitAndFindElement(By.XPath("//link[@itemprop='availability']"));
-        public IWebElement MainPageQuantityButtonPlus => WaitAndFindElement(By.XPath("//a[@class='btn btn-default button-plus product_quantity_up']"));
-        public IWebElement MainPageSelectedProductSize => WaitAndFindElement(By.XPath("//select[@id='group_1']"));
-        public IWebElement MainPageAddToCartButton => WaitAndFindElement(By.XPath("//p[@id='add_to_cart']/button"));
-        public IWebElement MainPageProceedToCheckoutButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium']"));
-        public IWebElement MainPageActualQuantityLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_quantity']"));
-        public IWebElement MainPageActualColorAndSizeLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_attributes']"));
-        public IWebElement MainPageAddedItemToCartLabel => WaitAndFindElement(By.XPath("//i[@class='icon-ok']"));
+        public IWebElement CompareButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium bt_compare bt_compare']"));
+        public IWebElement QuickViewFrame => WaitAndFindElement(By.XPath("//iframe[contains(@id, 'fancybox-frame')]"));
+        public IWebElement InStockButton => WaitAndFindElement(By.XPath("//link[@itemprop='availability']"));
+        public IWebElement QuantityIncreaseButton => WaitAndFindElement(By.XPath("//a[@class='btn btn-default button-plus product_quantity_up']"));
+        public IWebElement SelectedProductSize => WaitAndFindElement(By.XPath("//select[@id='group_1']"));
+        public IWebElement AddToCartButton => WaitAndFindElement(By.XPath("//p[@id='add_to_cart']/button"));
+        public IWebElement ProceedToCheckoutButton => WaitAndFindElement(By.XPath("//*[@class='btn btn-default button button-medium']"));
+        public IWebElement ActualQuantityLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_quantity']"));
+        public IWebElement ActualColorAndSizeLabel => WaitAndFindElement(By.XPath("//span[@id='layer_cart_product_attributes']"));
+        public IWebElement AddedItemToCartLabel => WaitAndFindElement(By.XPath("//i[@class='icon-ok']"));
 
-        public IWebElement GetActualAddToCartLabelByText(string dressTitle)
+        public IWebElement GetActualAddToCartLabelByDressTitle(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//span[contains(text(),'{dressTitle}')]"));
         }
@@ -27,7 +27,7 @@ namespace AutomationPractice.version2.Pages.MainPage
 
         public IWebElement GetAddToCompareButtonByDressTitle(string dressTitle)
         {
-            return WaitAndFindElement(RelativeBy.WithLocator(By.XPath("//a[@class='add_to_compare']")).Below(By.XPath($"//img[@title='{dressTitle}']")));
+            return WaitAndFindElement(RelativeBy.WithLocator(By.XPath("//a[contains(text(),'Printed Dress')]//parent::h5//parent::div//following-sibling::div//div[contains(@class, 'compare')]//a")));
         }
 
         public IWebElement GetDressImageByDressTitle(string dressTitle)
@@ -35,7 +35,7 @@ namespace AutomationPractice.version2.Pages.MainPage
             return WaitAndFindElement(By.XPath($"//img[@title='{dressTitle}']"));
         }
   
-        public IWebElement GetActualLabelFromQuckViewByDressTitle(string dressTitle)
+        public IWebElement GetActualQuckViewLabelByDressTitle(string dressTitle)
         {
             return WaitAndFindElement(By.XPath($"//h1[contains(text(),'{dressTitle}')]"));
         }
