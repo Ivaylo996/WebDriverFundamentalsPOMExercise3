@@ -6,17 +6,17 @@ namespace AutomationPractice.version2.Pages.MainPage
     {
         public void AssertQuickviewScreen(string expectedResultDressTitle, string actualDressTitle)
         {
-            Assert.AreEqual(expectedResultDressTitle, GetActualLabelFromQuckViewByDressTitle(actualDressTitle).Text.Trim());
+            Assert.AreEqual(expectedResultDressTitle, GetActualQuckViewLabelByDressTitle(actualDressTitle).Text.Trim());
         }
 
         public void AssertQuantityOfProductFromQuickView()
         {
-            Assert.AreEqual(quantityQuickVew.ToString(), MainPageActualQuantityLabel.Text);
+            Assert.AreEqual(quantityQuickVew.ToString(), ActualQuantityLabel.Text);
         }
 
         public void AssertColorAndSizeOfProductFromQuickView()
         {
-            Assert.AreEqual(dressColorAndSize, MainPageActualColorAndSizeLabel.Text);
+            Assert.AreEqual(dressColorAndSize, ActualColorAndSizeLabel.Text);
         }
     }
 }

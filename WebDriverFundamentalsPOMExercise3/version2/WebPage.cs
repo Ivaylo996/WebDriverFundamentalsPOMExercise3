@@ -9,7 +9,6 @@ namespace AutomationPractice.version2
     public abstract class WebPage
     {
         private const int WAIT_FOR_ELEMENT_TIMEOUT = 60;
-        private string url = "http://automationpractice.com/";
 
         public WebPage(IWebDriver _driver)
         {
@@ -19,17 +18,7 @@ namespace AutomationPractice.version2
 
         protected IWebDriver Driver { get; set; }
         protected WebDriverWait WebDriverWait { get; set; }
-        protected virtual string Url
-        {
-            get
-            {
-                return url;
-            }
-            set
-            {
-                url = value;
-            }
-        }
+        protected virtual string Url => "http://automationpractice.com/";
 
         protected void HoverElement(IWebElement iwebElement)
         {
@@ -77,16 +66,12 @@ namespace AutomationPractice.version2
 
         public void WaitForAjax()
         {
-            var js = (IJavaScriptExecutor)Driver;
-
-            WebDriverWait.Until(wd => js.ExecuteScript("return jQuery.active").ToString() == "0");
+            WebDriverWait.Until(wd => ((IJavaScriptExecutor)Driver).ExecuteScript("return jQuery.active").ToString() == "0");
         }
 
         public void WaitUntilPageLoadsCompletely()
         {
-            var js = ((IJavaScriptExecutor)Driver);
-
-            WebDriverWait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
+            WebDriverWait.Until(wd => ((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState").ToString() == "complete");
         }
     }
 }
